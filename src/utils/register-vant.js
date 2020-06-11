@@ -7,7 +7,8 @@ import {
     NavBar,
     Form,
     Field,
-    CountDown
+    CountDown,
+    Toast 
 } from "vant"
 Vue.use(Button)
     .use(Cell)
@@ -15,3 +16,5 @@ Vue.use(Button)
     .use(Form)
     .use(Field)
     .use(CountDown)
+    .use(Toast)
+

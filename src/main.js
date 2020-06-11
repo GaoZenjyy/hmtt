@@ -8,6 +8,7 @@ import "./utils/register-vant"
 // 引入全局css
 import "./styles/index.less"
 // Vue.use(Button)
+// 引入接口
 Vue.config.productionTip = false
 
 new Vue({
