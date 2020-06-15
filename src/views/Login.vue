@@ -12,7 +12,7 @@
       />
       <van-field
         v-model="code"
-        left-icon="orders-o"
+        left-icon="points"
         type="password"
         name="code"
         placeholder="请输入验证码"
@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-import { sendCode } from "@/utils/api.js";
+import { sendCode, login } from "@/utils/api.js";
 
 export default {
   data() {
@@ -42,17 +42,36 @@ export default {
     };
   },
   methods: {
-    onSubmit(value) {
-      console.log(value);
+    async onSubmit(value) {
+      // console.log(value);
+      try {
+        let ret = await login(this.mobile, this.code);
+        // console.log(ret);
+        //把token放入在vuex里面进行管理
+        this.$store.commit("setUser", ret.data.data);
+        this.$toast.success("登录成功");
+        this.$router.push("/");
+      } catch (error) {
+        this.$toast.fail("登录失败 ! 请重试");
+      }
     },
     // 点击是获取验证码
-    yzm() {
+    async yzm() {
       if (!this.mobile == "") {
         // console.log(123);
-        sendCode(this.mobile).then(res => {
-          console.log(res);
-        });
         this.isyzm = false;
+
+        try {
+          await sendCode(this.mobile);
+          // console.log(res);
+        } catch (error) {
+          // console.dir(error);
+          if (error.response.status == 429) {
+            this.$toast.fail("访问太频繁");
+          } else {
+            this.$toast.fail("失败 ! 请重试 ");
+          }
+        }
       } else {
         this.$toast.fail("请输入手机号码");
       }
@@ -66,5 +85,8 @@ export default {
   }
 };
 </script>
-<style lang="less" >
+<style lang="less" scoped>
+.van-count-down {
+  color: grey;
+}
 </style>

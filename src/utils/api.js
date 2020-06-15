@@ -4,3 +4,7 @@ import request from "./request"
 export const sendCode = (mobile) => {
     return request.get("/v1_0/sms/codes/" + mobile)
 }
+// 登录页面
+export const login = (mobile, code) => {
+    return request.post("/v1_0/authorizations", { mobile, code })
+}

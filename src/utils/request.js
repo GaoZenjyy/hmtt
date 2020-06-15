@@ -3,7 +3,7 @@ import axios from "axios"
 import jsonBig from "json-bigint"
 // 配置基地址
 const request = axios.create({
-    baseURL: "http://ttapi.research.itcast.cn/" //基础路径
+    baseURL: "http://ttapi.research.itcast.cn/app" //基础路径
 })
 // 请求拦截器
 request.interceptors.request.use(

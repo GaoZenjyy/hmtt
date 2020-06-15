@@ -8,7 +8,12 @@ import {
     Form,
     Field,
     CountDown,
-    Toast 
+    Toast,
+    Tabbar,
+    TabbarItem,
+    Tab,
+    Tabs,
+    List
 } from "vant"
 Vue.use(Button)
     .use(Cell)
@@ -17,4 +22,11 @@ Vue.use(Button)
     .use(Field)
     .use(CountDown)
     .use(Toast)
+    .use(Tabbar)
+    .use(TabbarItem)
+    .use(Tab)
+    .use(Tabs)
+    .use(List)
+
+
 
