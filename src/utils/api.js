@@ -8,3 +8,7 @@ export const sendCode = (mobile) => {
 export const login = (mobile, code) => {
     return request.post("/v1_0/authorizations", { mobile, code })
 }
+// 获取全部新闻
+export const getAllChannels = () => {
+    return request.get('/v1_0/channels')
+}
